@@ -1,6 +1,6 @@
 import { IconSearch } from "@tabler/icons-react";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import PokemonList from "./PokemonList";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
@@ -10,7 +10,6 @@ const INCREASE_LIMIT = 20;
 const Pokemons = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
-
   const [limit, setLimit] = useState(INITIAL_LIMIT);
 
   const targetObserver = useRef(null);
@@ -33,7 +32,7 @@ const Pokemons = () => {
 
   useEffect(() => {
     const maxPokemons = pokemonsByName.length;
-    if (isVisible && maxPokemons != 0) {
+    if (isVisible && maxPokemons !== 0) {
       const newLimit = limit + INCREASE_LIMIT;
       newLimit > maxPokemons ? setLimit(maxPokemons) : setLimit(newLimit);
     }
@@ -64,10 +63,10 @@ const Pokemons = () => {
         </div>
       </form>
       <PokemonList pokemons={pokemonsByName.slice(0, limit)} />
-      {/*Target Observer*/}
+
+      {/* Target Observer */}
       <span ref={targetObserver}></span>
     </section>
   );
 };
-
 export default Pokemons;

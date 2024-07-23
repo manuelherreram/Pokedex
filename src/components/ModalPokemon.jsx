@@ -1,11 +1,13 @@
 import { IconX } from "@tabler/icons-react";
+import { colorByType } from "../constants/pokemon";
+import PokemonDetail from "./PokemonDetail";
 
-const ModalPokemon = ({ showModal, onCloseModal }) => {
+const ModalPokemon = ({ showModal, onCloseModal, pokemon }) => {
   return (
     <section
-      className={`fixed top-0 left-0 right-0 bg-green-400 h-screen transition-all duration-500 ${
+      className={`fixed lg:hidden top-0 left-0 right-0 h-screen transition-all duration-500 ${
         showModal ? "visible opacity-100" : "invisible opacity-0"
-      }`}
+      } ${colorByType[pokemon?.types[0]]}`}
     >
       <button
         onClick={onCloseModal}
@@ -18,10 +20,9 @@ const ModalPokemon = ({ showModal, onCloseModal }) => {
           showModal ? "bottom-0" : "-bottom-full"
         }`}
       >
-        Pokemon
+        <PokemonDetail pokemon={pokemon} />
       </article>
     </section>
   );
 };
-
 export default ModalPokemon;

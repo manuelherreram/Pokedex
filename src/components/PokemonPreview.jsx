@@ -44,5 +44,4 @@ const PokemonPreview = ({ pokemonURL, onClick }) => {
     </article>
   );
 };
-
 export default PokemonPreview;
